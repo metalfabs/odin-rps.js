@@ -6,13 +6,10 @@ function computerPlay(){
   switch (num){
     case 0:
       return "rock";
-      break;
     case 1:
       return "paper";
-      break;
     case 2:
       return "scissors";
-      break;
     default:
       return false;
   }
@@ -39,15 +36,21 @@ function playerSelect(){
   }
 }
 
-function playRound(plr, comp){
-  if (plr == false){
+function playRound(playerSelection, computerSelection){
+  if (playerSelection == false){
     return "Error in processing the round";
-  } else if (plr == comp){
-    return `It's a tie! Both players have chosen ${comp}`;
+  } else if (playerSelection == computerSelection){
+    return `It's a tie! Both players have chosen ${computerSelection}`;
+    /*Test for computer win conditions*/
+  } else if (playerSelection === "rock" && computerSelection === "paper"){
+    return `Computer wins!\nPlayer chose ${playerSelection}, and Computer chose ${computerSelection}.`
+  } else if (playerSelection === "paper" && computerSelection === "scissors"){
+    return `Computer wins!\nPlayer chose ${playerSelection}, and Computer chose ${computerSelection}.`
+  } else if (playerSelection === "scissors" && computerSelection === "rock"){
+    return `Computer wins!\nPlayer chose ${playerSelection}, and Computer chose ${computerSelection}.`
   } else {
-    return `Someone wins, but I'm not sure who:\n
-      Player chose ${plr}, and Computer chose ${comp}.`
-  } 
+    return `Player wins!\nPlayer chose ${playerSelection}, and Computer chose ${computerSelection}.`
+  }
 }
 
 console.log(playRound(playerSelect(), computerPlay()));
