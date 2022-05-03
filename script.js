@@ -36,6 +36,9 @@ function playerSelect(){
   }
 }
 
+var playerWinCount = 0;
+var computerWinCount = 0;
+
 function playRound(playerSelection, computerSelection){
   if (playerSelection == false){
     return "Error in processing the round";
@@ -43,15 +46,36 @@ function playRound(playerSelection, computerSelection){
     return `It's a tie! Both players have chosen ${computerSelection}`;
     /*Test for computer win conditions*/
   } else if (playerSelection === "rock" && computerSelection === "paper"){
+    computerWinCount += 1;
     return `Computer wins!\nPlayer chose ${playerSelection}, and Computer chose ${computerSelection}.`
   } else if (playerSelection === "paper" && computerSelection === "scissors"){
+    computerWinCount += 1;
     return `Computer wins!\nPlayer chose ${playerSelection}, and Computer chose ${computerSelection}.`
   } else if (playerSelection === "scissors" && computerSelection === "rock"){
+    computerWinCount += 1;
     return `Computer wins!\nPlayer chose ${playerSelection}, and Computer chose ${computerSelection}.`
   } else {
+    playerWinCount += 1;
     return `Player wins!\nPlayer chose ${playerSelection}, and Computer chose ${computerSelection}.`
   }
 }
 
-console.log(playRound(playerSelect(), computerPlay()));
+//console.log(playRound(playerSelect(), computerPlay()));
 
+function game(){
+  for (let i = 0; i < 5; i++){
+    console.log(playRound(playerSelect(), computerPlay()));
+  } 
+
+  console.log(`Player won ${playerWinCount} rounds.\nComputer won ${computerWinCount} rounds.`);
+
+  if (playerWinCount > computerWinCount){
+    console.log(`The winner is:\n\n\nPLAYER!`);
+  } else if (computerWinCount > playerWinCount){  
+    console.log(`The winner is:\n\n\nCOMPUTER!`);
+  } else {
+    console.log('It\'s a tie!');
+  }
+}
+
+game();
